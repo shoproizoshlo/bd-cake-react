@@ -6,13 +6,16 @@ function App() {
   const [elementPositions, setElementPositions] = useState([]);
 
   useEffect(() => {
-    const positions = Array.from({ length: age }, () => ({
-      x: Math.random() * 270 + 10,
-      y: Math.random() * 40,
-    }));
+    const newPositions = Array.from(
+      { length: age - elementPositions.length },
+      () => ({
+        x: Math.random() * 270 + 10,
+        y: Math.random() * 40,
+      })
+    );
 
-    setElementPositions(positions);
-  }, [age]);
+    setElementPositions((prevPositions) => [...prevPositions, ...newPositions]);
+  }, [age, elementPositions.length]);
 
   return (
     <>
