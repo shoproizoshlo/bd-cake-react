@@ -37,6 +37,7 @@
   border-radius: 20% 20% 5% 5%;
   background-color: green;
 }
+
 .fire {
   height: 15px;
   width: 10px;
@@ -44,6 +45,17 @@
   background-color: orange;
   position: relative;
   top: -65px;
+}
+.quench {
+  animation: quenchInDown 1s ease-in-out forwards;
+}
+@keyframes quenchInDown {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
 }
 
 .cake {

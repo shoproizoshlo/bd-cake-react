@@ -4,6 +4,68 @@ import "./App.css";
 function App() {
   const [age, setAge] = useState([]);
   const [elementPositions, setElementPositions] = useState([]);
+  const [stream, setStream] = useState(null);
+  const [isBlowing, setIsBlowing] = useState(false);
+
+  useEffect(() => {
+    const requestMicrophone = async () => {
+      try {
+        const userMedia = await navigator.mediaDevices.getUserMedia({
+          audio: true,
+        });
+        setStream(userMedia);
+
+        const audioContext = new (window.AudioContext ||
+          window.webkitAudioContext)();
+        const analyser = audioContext.createAnalyser();
+        const microphone = audioContext.createMediaStreamSource(userMedia);
+
+        microphone.connect(analyser);
+        analyser.connect(audioContext.destination);
+        audioContext.destination.disconnect();
+
+        analyser.fftSize = 256;
+        const bufferLength = analyser.frequencyBinCount;
+        const dataArray = new Uint8Array(bufferLength);
+
+        const threshold = 1; // Пороговое значение амплитуды
+
+        const detectBlow = () => {
+          analyser.getByteFrequencyData(dataArray);
+          const averageAmplitude =
+            dataArray.reduce((acc, val) => acc + val, 0) / bufferLength;
+
+          if (averageAmplitude > threshold) {
+            setIsBlowing(true);
+          } else {
+            setIsBlowing(false);
+          }
+
+          requestAnimationFrame(detectBlow);
+        };
+
+        detectBlow();
+        return () => {
+          // Освобождаем ресурсы при размонтировании компонента
+          if (stream) {
+            stream.getTracks().forEach((track) => track.stop());
+            analyser.disconnect(); // Отключаем анализатор при размонтировании
+          }
+        };
+      } catch (error) {
+        console.error("Error accessing microphone:", error);
+      }
+    };
+
+    requestMicrophone();
+
+    return () => {
+      // Освобождаем ресурсы при размонтировании компонента
+      if (stream) {
+        stream.getTracks().forEach((track) => track.stop());
+      }
+    };
+  }, [stream]);
 
   useEffect(() => {
     const newPositions = Array.from(
@@ -19,6 +81,15 @@ function App() {
 
   return (
     <>
+      <div>
+        {isBlowing ? (
+          <div>
+            <p>Microphone is active.</p>
+          </div>
+        ) : (
+          <p>Access to the microphone is not granted.</p>
+        )}
+      </div>
       <div className="age">
         <input
           type="number"
@@ -44,7 +115,7 @@ function App() {
               key={i}
             >
               <div className="candle"></div>
-              <div className="fire"></div>
+              <div className={`fire ${isBlowing ? "quench" : ""}`}></div>
             </div>
           ))}
         </div>
