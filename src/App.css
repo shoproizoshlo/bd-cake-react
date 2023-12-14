@@ -47,7 +47,7 @@
   top: -65px;
 }
 .quench {
-  animation: quenchInDown 1s ease-in-out forwards;
+  animation: quenchInDown 2s ease-in-out forwards;
 }
 @keyframes quenchInDown {
   from {

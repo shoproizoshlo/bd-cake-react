@@ -6,6 +6,7 @@ function App() {
   const [elementPositions, setElementPositions] = useState([]);
   const [stream, setStream] = useState(null);
   const [isBlowing, setIsBlowing] = useState(false);
+  const [hasBlownOnce, setHasBlownOnce] = useState(false);
 
   useEffect(() => {
     const requestMicrophone = async () => {
@@ -49,7 +50,7 @@ function App() {
           // Освобождаем ресурсы при размонтировании компонента
           if (stream) {
             stream.getTracks().forEach((track) => track.stop());
-            analyser.disconnect(); // Отключаем анализатор при размонтировании
+            //analyser.disconnect(); // Отключаем анализатор при размонтировании
           }
         };
       } catch (error) {
@@ -68,6 +69,7 @@ function App() {
   }, [stream]);
 
   useEffect(() => {
+    setHasBlownOnce(false);
     const newPositions = Array.from(
       { length: age - elementPositions.length },
       () => ({
@@ -75,9 +77,17 @@ function App() {
         y: Math.random() * 40,
       })
     );
-
     setElementPositions((prevPositions) => [...prevPositions, ...newPositions]);
   }, [age, elementPositions.length]);
+
+  useEffect(() => {
+    if (isBlowing) {
+      // Применяем quench только если isBlowing первый раз
+      if (!hasBlownOnce) {
+        setHasBlownOnce(true);
+      }
+    }
+  }, [isBlowing, hasBlownOnce]);
 
   return (
     <>
@@ -115,7 +125,9 @@ function App() {
               key={i}
             >
               <div className="candle"></div>
-              <div className={`fire ${isBlowing ? "quench" : ""}`}></div>
+              <div
+                className={`fire ${isBlowing || hasBlownOnce ? "quench" : ""}`}
+              ></div>
             </div>
           ))}
         </div>
