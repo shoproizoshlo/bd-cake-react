@@ -9,7 +9,7 @@
   flex-direction: column;
   position: relative;
   left: 50%;
-  transform: translateX(-9%);
+  /* transform: translateX(-50%); */
   /* align-items: center; */
 }
 

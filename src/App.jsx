@@ -14,33 +14,6 @@ function App() {
     setElementPositions(positions);
   }, [age]);
 
-  const generateElements = () => {
-    return elementPositions.map((position, i) => (
-      <div
-        className="bd-candle"
-        style={{
-          position: "absolute",
-          left: `${position.x}px`,
-          top: `${position.y}px`,
-        }}
-        key={i}
-      >
-        <div className="candle"></div>
-        <div className="fire"></div>
-      </div>
-    ));
-  };
-
-  // bd-candle:
-  // if age >=1
-  // display: flex;
-  // for each 1 year display 1 bd-candle
-  // else
-  // display none
-
-  // if blow
-  // fire display: none;
-  // <p>candles left</p>
   return (
     <>
       <div className="age">
@@ -56,7 +29,22 @@ function App() {
         />
       </div>
       <div className="bd-cake">
-        <div className="bd-candles">{generateElements()}</div>
+        <div className="bd-candles">
+          {elementPositions.map((position, i) => (
+            <div
+              className="bd-candle"
+              style={{
+                position: "absolute",
+                left: `${position.x}px`,
+                top: `${position.y}px`,
+              }}
+              key={i}
+            >
+              <div className="candle"></div>
+              <div className="fire"></div>
+            </div>
+          ))}
+        </div>
         <div className="cake circle-1"></div>
         <div className="cake circle-2"></div>
         <div className="cake circle-3"></div>
