@@ -1,34 +1,41 @@
-.bd-cake {
+.age {
   margin: 10% auto;
   display: flex;
   flex-direction: column;
   align-items: center;
 }
+.bd-cake {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
 .cake {
-  width: 200px;
-  height: 50px;
+  width: 300px;
+  height: 100px;
   border-radius: 40%;
 }
 
 .circle-1 {
   background-color: bisque;
   position: relative;
-  top: 60px;
+  top: 145px;
   z-index: 1;
 }
 .circle-2 {
   background-color: red;
   position: relative;
-  top: 30px;
+  top: 72px;
 }
 .circle-3 {
   background-color: blue;
 }
 
 .bd-candle {
+  /* display: none; */
   display: flex;
   flex-direction: column;
   align-items: center;
+  width: 10px;
 }
 .candle {
   height: 50px;
