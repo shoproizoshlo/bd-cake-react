@@ -1,5 +1,5 @@
 .age {
-  margin: 10% auto;
+  margin: 20% auto;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -9,34 +9,32 @@
   flex-direction: column;
   align-items: center;
 }
-.cake {
-  width: 300px;
-  height: 100px;
-  border-radius: 40%;
-}
 
-.circle-1 {
-  background-color: bisque;
-  position: relative;
-  top: 145px;
-  z-index: 1;
+.bd-candles {
+  display: flex;
+  flex-wrap: wrap;
+  position: absolute;
+  z-index: 5;
 }
-.circle-2 {
-  background-color: red;
-  position: relative;
-  top: 72px;
-}
-.circle-3 {
-  background-color: blue;
-}
-
 .bd-candle {
   /* display: none; */
   display: flex;
   flex-direction: column;
   align-items: center;
   width: 10px;
+  z-index: 2;
+  animation: fadeInDown 2s ease-in-out forwards;
 }
+
+@keyframes fadeInDown {
+  from {
+    transform: translateY(-100vh);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+
 .candle {
   height: 50px;
   width: 7px;
@@ -50,4 +48,24 @@
   background-color: orange;
   position: relative;
   top: -65px;
+}
+
+.cake {
+  width: 300px;
+  height: 100px;
+  border-radius: 40%;
+  position: relative;
+}
+.circle-1 {
+  background-color: bisque;
+  z-index: 2;
+}
+.circle-2 {
+  background-color: red;
+  top: -72px;
+  z-index: 1;
+}
+.circle-3 {
+  background-color: blue;
+  top: -143px;
 }
