@@ -33,6 +33,8 @@ function App() {
         <input
           type="number"
           placeholder="Enter your age"
+          min="1"
+          max="100"
           value={age}
           onChange={(e) => {
             console.log(e.target.value);
