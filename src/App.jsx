@@ -7,8 +7,8 @@ function App() {
 
   useEffect(() => {
     const positions = Array.from({ length: age }, () => ({
-      x: Math.random() * (window.innerWidth - 50), // 50 - ширина элемента
-      y: Math.random() * (window.innerHeight - 50), // 50 - высота элемента
+      x: Math.random() * 270 + 10,
+      y: Math.random() * 40,
     }));
 
     setElementPositions(positions);
@@ -18,7 +18,11 @@ function App() {
     return elementPositions.map((position, i) => (
       <div
         className="bd-candle"
-        style={{ left: `${position.x}px`, top: `${position.y}px` }}
+        style={{
+          position: "absolute",
+          left: `${position.x}px`,
+          top: `${position.y}px`,
+        }}
         key={i}
       >
         <div className="candle"></div>
