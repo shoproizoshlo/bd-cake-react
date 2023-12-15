@@ -5,8 +5,7 @@ function App() {
   const [age, setAge] = useState([]);
   const [elementPositions, setElementPositions] = useState([]);
   const [stream, setStream] = useState(null);
-  const [isBlowing, setIsBlowing] = useState(false);
-  const [hasBlownOnce, setHasBlownOnce] = useState(false);
+  const [averageAmplitude, setAverageAmplitude] = useState(0);
 
   useEffect(() => {
     const requestMicrophone = async () => {
@@ -33,26 +32,14 @@ function App() {
 
         const detectBlow = () => {
           analyser.getByteFrequencyData(dataArray);
-          const averageAmplitude =
+          const amplitude =
             dataArray.reduce((acc, val) => acc + val, 0) / bufferLength;
-
-          if (averageAmplitude > threshold) {
-            setIsBlowing(true);
-          } else {
-            setIsBlowing(false);
-          }
+          setAverageAmplitude(amplitude);
 
           requestAnimationFrame(detectBlow);
         };
 
         detectBlow();
-        return () => {
-          // Освобождаем ресурсы при размонтировании компонента
-          if (stream) {
-            stream.getTracks().forEach((track) => track.stop());
-            //analyser.disconnect(); // Отключаем анализатор при размонтировании
-          }
-        };
       } catch (error) {
         console.error("Error accessing microphone:", error);
       }
@@ -69,7 +56,6 @@ function App() {
   }, [stream]);
 
   useEffect(() => {
-    setHasBlownOnce(false);
     const newPositions = Array.from(
       { length: age - elementPositions.length },
       () => ({
@@ -77,22 +63,14 @@ function App() {
         y: Math.random() * 40,
       })
     );
+
     setElementPositions((prevPositions) => [...prevPositions, ...newPositions]);
   }, [age, elementPositions.length]);
-
-  useEffect(() => {
-    if (isBlowing) {
-      // Применяем quench только если isBlowing первый раз
-      if (!hasBlownOnce) {
-        setHasBlownOnce(true);
-      }
-    }
-  }, [isBlowing, hasBlownOnce]);
 
   return (
     <>
       <div>
-        {isBlowing ? (
+        {averageAmplitude > 1 ? (
           <div>
             <p>Microphone is active.</p>
           </div>
@@ -126,7 +104,13 @@ function App() {
             >
               <div className="candle"></div>
               <div
-                className={`fire ${isBlowing || hasBlownOnce ? "quench" : ""}`}
+                className="fire"
+                style={{
+                  opacity:
+                    averageAmplitude > 1
+                      ? 0.1 + (i / elementPositions.length) * 0.9
+                      : 1,
+                }}
               ></div>
             </div>
           ))}
