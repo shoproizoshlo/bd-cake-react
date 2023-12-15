@@ -6,6 +6,7 @@ function App() {
   const [elementPositions, setElementPositions] = useState([]);
   const [stream, setStream] = useState(null);
   const [averageAmplitude, setAverageAmplitude] = useState(0);
+  const [hasBlown, setHasBlown] = useState(false);
 
   useEffect(() => {
     const requestMicrophone = async () => {
@@ -28,7 +29,7 @@ function App() {
         const bufferLength = analyser.frequencyBinCount;
         const dataArray = new Uint8Array(bufferLength);
 
-        const threshold = 1; // Пороговое значение амплитуды
+        const threshold = 10; // Пороговое значение амплитуды
 
         const detectBlow = () => {
           analyser.getByteFrequencyData(dataArray);
@@ -66,6 +67,15 @@ function App() {
 
     setElementPositions((prevPositions) => [...prevPositions, ...newPositions]);
   }, [age, elementPositions.length]);
+
+  useEffect(() => {
+    if (averageAmplitude > 1) {
+      // Применяем quench только если isBlowing первый раз
+      if (!hasBlown) {
+        setHasBlown(true);
+      }
+    }
+  }, [averageAmplitude, hasBlown]);
 
   return (
     <>
@@ -108,7 +118,7 @@ function App() {
                 style={{
                   opacity:
                     averageAmplitude > 1
-                      ? 0.1 + (i / elementPositions.length) * 0.9
+                      ? Math.max(0.1, (i / elementPositions.length) * 0.9)
                       : 1,
                 }}
               ></div>
