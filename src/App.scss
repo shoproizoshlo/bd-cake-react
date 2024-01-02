@@ -142,28 +142,16 @@ body {
   border-bottom-right-radius: 40px;
 }
 
-// .candle {
-//   background-color: #7b020b;
-//   width: 16px;
-//   height: 50px;
-//   border-radius: 8px / 4px;
-//   top: -20px;
-//   left: 50%;
-//   margin-left: -8px;
-//   z-index: 10;
-//   &:before {
-//     content: "";
-//     position: absolute;
-//     top: 0;
-//     left: 0;
-//     width: 16px;
-//     height: 8px;
-//     border-radius: 50%;
-//     background-color: lighten(#7b020b, 10%);
-//   }
-// }
-
 $background-color_1: #ce97fb;
+
+@keyframes fadeInDown {
+  from {
+    transform: translateY(-100vh);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
 
 .candle {
   margin-left: -8px;
@@ -181,6 +169,7 @@ $background-color_1: #ce97fb;
     #ce97fb 8px
   );
   z-index: 10;
+  animation: fadeInDown 0.6s ease-in-out forwards;
 
   &:before {
     content: "";
