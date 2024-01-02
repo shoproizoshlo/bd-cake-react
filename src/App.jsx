@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import "./App.css";
+import "./App.scss";
 
 function App() {
   const [age, setAge] = useState([]);
@@ -70,6 +71,19 @@ function App() {
 
   return (
     <>
+      <div class="cake">
+        <div class="plate"></div>
+        <div class="layer layer-bottom"></div>
+        <div class="layer layer-middle"></div>
+        <div class="layer layer-top"></div>
+        <div class="icing"></div>
+        <div class="drip drip1"></div>
+        <div class="drip drip2"></div>
+        <div class="drip drip3"></div>
+        <div class="candle">
+          <div class="flame"></div>
+        </div>
+      </div>
       <div>
         {averageAmplitude > 1 ? (
           <div>
