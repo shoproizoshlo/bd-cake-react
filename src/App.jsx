@@ -17,6 +17,7 @@ function App() {
         <div className="candle">
           <div className="flame"></div>
         </div>
+        <div className="drop"></div>
       </div>
     </>
   );
