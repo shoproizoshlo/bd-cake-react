@@ -71,6 +71,16 @@ function App() {
 
   return (
     <>
+      <input
+        type="number"
+        placeholder="Enter your age"
+        min="1"
+        value={age}
+        onChange={(e) => {
+          console.log(e.target.value);
+          setAge(e.target.value);
+        }}
+      />
       <div class="cake">
         <div class="plate"></div>
         <div class="layer layer-bottom"></div>
@@ -93,18 +103,7 @@ function App() {
           <p>Access to the microphone is not granted.</p>
         )}
       </div>
-      <div className="age">
-        <input
-          type="number"
-          placeholder="Enter your age"
-          min="1"
-          value={age}
-          onChange={(e) => {
-            console.log(e.target.value);
-            setAge(e.target.value);
-          }}
-        />
-      </div>
+      <div className="age"></div>
       <div className="bd-cake">
         <div className="bd-candles">
           {elementPositions.map((position, i) => (
