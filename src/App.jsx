@@ -112,7 +112,9 @@ function App() {
               }}
               key={i}
             >
-              <div className={blowDetected ? "blow" : "flame"}></div>
+              <div
+                className={`flame ${blowDetected ? "fadeOut" : "flicker"}`}
+              ></div>
 
               <div className="drop"></div>
             </div>
