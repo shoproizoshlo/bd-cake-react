@@ -1,4 +1,5 @@
 import Candle from "./Candle";
+import "./Cake.scss";
 
 const Cake = ({ elementPositions, blowDetected }) => {
   return (

@@ -1,3 +1,5 @@
+import "./Candle.scss";
+
 const Candle = ({ elementPositions, blowDetected }) => {
   return (
     <div className="bd-candles">

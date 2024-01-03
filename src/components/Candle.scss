@@ -1,0 +1,143 @@
+$background-color_1: #ce97fb;
+
+.candle {
+  margin-left: -8px;
+  top: -20px;
+  left: 50%;
+  width: 16px;
+  height: 50px;
+  border-radius: 8px / 4px;
+  background-color: $background-color_1;
+  background: repeating-linear-gradient(
+    45deg,
+    #faa99d,
+    #fddf7e 1px,
+    #f6a5eb 2px,
+    #ce97fb 8px
+  );
+  z-index: 10;
+  animation: fadeInDown 0.6s ease-in-out forwards;
+
+  &:before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 16px;
+    height: 8px;
+    border-radius: 50%;
+    background-color: lighten(#faa99d, 10%);
+  }
+}
+/*.candle:before is the flickering light*/
+/*.candle:after is the candle's shadow*/
+@keyframes flickr {
+  0% {
+    transform: rotate(45deg);
+  }
+  50% {
+    transform: rotate(40deg);
+  }
+  100% {
+    transform: rotate(50deg);
+  }
+}
+
+@keyframes fadeInDown {
+  from {
+    transform: translateY(-100vh);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+
+@keyframes drop {
+  50% {
+    transform: rotate(55deg);
+  }
+  100% {
+    top: 40px;
+    transform: rotate(60deg);
+    border-radius: 0px 100px 100px 100px;
+  }
+}
+.drop {
+  position: absolute;
+  content: "";
+  background: #ce97fb;
+  height: 7px;
+  width: 7px;
+  border-radius: 0px 100px 80px 100px;
+  transform: rotate(60deg);
+  top: 10px;
+  left: -15%;
+  animation: drop infinite ease 6s;
+  z-index: 3;
+}
+
+.wick {
+  position: absolute;
+  background-color: rgb(80, 52, 0);
+  border-radius: 10px 10px 10px 10px;
+  width: 1px;
+  height: 10px;
+  top: -6px;
+  left: 50%;
+}
+
+.flame {
+  position: absolute;
+  background-color: orange;
+  width: 15px;
+  height: 35px;
+  border-radius: 10px 10px 10px 10px / 25px 25px 10px 10px;
+  top: -34px;
+  left: 50%;
+  margin-left: -7.5px;
+  z-index: 10;
+  box-shadow: 0 0 10px rgba(orange, 0.5), 0 0 20px rgba(orange, 0.5),
+    0 0 60px rgba(orange, 0.5), 0 0 80px rgba(orange, 0.5);
+  transform-origin: 50% 90%;
+  //   animation: flicker 1s ease-in-out alternate infinite;
+}
+.flicker {
+  animation: flicker 1s ease-in-out alternate infinite;
+}
+
+@keyframes flicker {
+  0% {
+    transform: skewX(5deg);
+    box-shadow: 0 0 10px rgba(orange, 0.2), 0 0 20px rgba(orange, 0.2),
+      0 0 60px rgba(orange, 0.2), 0 0 80px rgba(orange, 0.2);
+  }
+  25% {
+    transform: skewX(-5deg);
+    box-shadow: 0 0 10px rgba(orange, 0.5), 0 0 20px rgba(orange, 0.5),
+      0 0 60px rgba(orange, 0.5), 0 0 80px rgba(orange, 0.5);
+  }
+  50% {
+    transform: skewX(10deg);
+    box-shadow: 0 0 10px rgba(orange, 0.3), 0 0 20px rgba(orange, 0.3),
+      0 0 60px rgba(orange, 0.3), 0 0 80px rgba(orange, 0.3);
+  }
+  75% {
+    transform: skewX(-10deg);
+    box-shadow: 0 0 10px rgba(orange, 0.4), 0 0 20px rgba(orange, 0.4),
+      0 0 60px rgba(orange, 0.4), 0 0 80px rgba(orange, 0.4);
+  }
+  100% {
+    transform: skewX(5deg);
+    box-shadow: 0 0 10px rgba(orange, 0.5), 0 0 20px rgba(orange, 0.5),
+      0 0 60px rgba(orange, 0.5), 0 0 80px rgba(orange, 0.5);
+  }
+}
+
+.fadeOut {
+  animation: fadeOut 1s ease-in-out forwards;
+}
+@keyframes fadeOut {
+  to {
+    opacity: 0;
+  }
+}
