@@ -2,14 +2,17 @@ import React, { useState, useEffect } from "react";
 
 const Candles = () => {
   const [blowDetected, setBlowDetected] = useState(false);
+  let audioContext;
+  let analyser;
+  let microphone;
 
   useEffect(() => {
-    let audioContext;
-    let analyser;
-    let microphone;
-
     const handleBlow = () => {
       setBlowDetected(true);
+
+      // Отключаем прямой вывод аудиопотока при обнаружении дуновения
+      microphone.disconnect(analyser);
+      analyser.disconnect(audioContext.destination);
     };
 
     const initializeMicrophone = async () => {
@@ -22,7 +25,6 @@ const Candles = () => {
         microphone = audioContext.createMediaStreamSource(stream);
 
         microphone.connect(analyser);
-        analyser.connect(audioContext.destination);
 
         analyser.fftSize = 256;
         const bufferLength = analyser.frequencyBinCount;
@@ -37,7 +39,7 @@ const Candles = () => {
           const average =
             dataArray.reduce((acc, val) => acc + val, 0) / bufferLength;
 
-          if (average > 100) {
+          if (average > 100 && !blowDetected) {
             handleBlow();
           }
 
@@ -58,7 +60,7 @@ const Candles = () => {
         audioContext.close();
       }
     };
-  }, []);
+  }, [blowDetected]);
 
   return (
     <div>
