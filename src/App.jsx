@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react";
-
-import "./App.css";
 import "./App.scss";
+import Age from "./components/Age";
 
 function App() {
   const [age, setAge] = useState([]);
@@ -83,26 +82,7 @@ function App() {
 
   return (
     <>
-      <div className="input">
-        <p>Enter your age</p>
-        <input
-          type="number"
-          value={age}
-          onChange={(e) => {
-            console.log(e.target.value);
-            setAge(e.target.value);
-          }}
-        />
-      </div>
-
-      <div>
-        {blowDetected ? (
-          <p>Candles are blown out!</p>
-        ) : (
-          <p>Blow on the microphone to blow out the candles!</p>
-        )}
-        {/* Дополнительные элементы свечей */}
-      </div>
+      <Age age={age} setAge={setAge} blowDetected={blowDetected} />
 
       <div className="cake">
         <div className="plate"></div>
