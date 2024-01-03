@@ -10,9 +10,11 @@ const Candles = () => {
     const handleBlow = () => {
       setBlowDetected(true);
 
-      // Отключаем прямой вывод аудиопотока при обнаружении дуновения
-      microphone.disconnect(analyser);
-      analyser.disconnect(audioContext.destination);
+      // Проверяем, подключен ли микрофон к аудиоанализатору
+      if (microphone && analyser && audioContext.state === "running") {
+        // Останавливаем работу аудиоанализатора при обнаружении дуновения
+        audioContext.suspend();
+      }
     };
 
     const initializeMicrophone = async () => {
