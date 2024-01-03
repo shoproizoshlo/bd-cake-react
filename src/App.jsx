@@ -83,14 +83,26 @@ function App() {
 
   return (
     <>
-      <input
-        type="number"
-        value={age}
-        onChange={(e) => {
-          console.log(e.target.value);
-          setAge(e.target.value);
-        }}
-      />
+      <div>
+        <p>Enter your age</p>
+        <input
+          type="number"
+          value={age}
+          onChange={(e) => {
+            console.log(e.target.value);
+            setAge(e.target.value);
+          }}
+        />
+      </div>
+
+      <div>
+        {blowDetected ? (
+          <p>Candles are blown out!</p>
+        ) : (
+          <p>Blow on the microphone to blow out the candles!</p>
+        )}
+        {/* Дополнительные элементы свечей */}
+      </div>
 
       <div className="cake">
         <div className="plate"></div>
