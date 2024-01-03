@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import Candles from "./components/Candles";
+
 import "./App.css";
 import "./App.scss";
 
@@ -133,8 +133,6 @@ function App() {
           ))}
         </div>
       </div>
-
-      <Candles />
     </>
   );
 }

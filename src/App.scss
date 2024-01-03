@@ -106,22 +106,23 @@ p {
     transform: rotate(55deg);
   }
   100% {
-    top: 20px;
+    top: 40px;
     transform: rotate(60deg);
     border-radius: 0px 100px 100px 100px;
   }
 }
 .drop {
+  position: absolute;
   content: "";
   background: #ce97fb;
   height: 7px;
   width: 7px;
   border-radius: 0px 100px 80px 100px;
   transform: rotate(60deg);
-  top: -14px;
-  left: 45%;
+  top: 10px;
+  left: -15%;
   animation: drop infinite ease 6s;
-  z-index: 9;
+  z-index: 3;
 }
 
 .drip1 {
