@@ -83,9 +83,25 @@ function App() {
 
   return (
     <>
-      <Age age={age} setAge={setAge} blowDetected={blowDetected} />
+      <main>
+        <Age age={age} setAge={setAge} blowDetected={blowDetected} />
 
-      <Cake elementPositions={elementPositions} blowDetected={blowDetected} />
+        <Cake elementPositions={elementPositions} blowDetected={blowDetected} />
+      </main>
+
+      <footer>
+        <p>
+          Created by{" "}
+          <a
+            href="https://github.com/shoproizoshlo"
+            rel="noreferer"
+            target="_blank"
+          >
+            Sue Brechko
+          </a>
+          . Idea @someone
+        </p>
+      </footer>
     </>
   );
 }
