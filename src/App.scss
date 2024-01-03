@@ -1,5 +1,6 @@
-input {
+.input {
   margin-top: 10%;
+  text-align: center;
 }
 
 $vanilla: #f0e4d0;
@@ -44,7 +45,7 @@ p {
   background-color: #f6a5eb;
   border-radius: 50%;
   box-shadow: 0 2px 0 darken(#ce97fb, 10%), 0 4px 0 darken(#ccc, 10%),
-    0 5px 40px rgba(black, 0.5);
+    0 5px 40px rgba(#f6a5eb, 0.5);
 }
 
 .cake > * {
@@ -199,6 +200,16 @@ $background-color_1: #ce97fb;
   100% {
     transform: rotate(50deg);
   }
+}
+
+.wick {
+  position: absolute;
+  background-color: rgb(80, 52, 0);
+  border-radius: 10px 10px 10px 10px;
+  width: 1px;
+  height: 10px;
+  top: -6px;
+  left: 50%;
 }
 
 .flame {

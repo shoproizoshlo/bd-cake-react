@@ -83,7 +83,7 @@ function App() {
 
   return (
     <>
-      <div>
+      <div className="input">
         <p>Enter your age</p>
         <input
           type="number"
@@ -128,7 +128,8 @@ function App() {
                 className={`flame ${blowDetected ? "fadeOut" : "flicker"}`}
               ></div>
 
-              <div className="drop"></div>
+              <div className="wick"></div>
+              <div className={blowDetected ? "" : "drop"}></div>
             </div>
           ))}
         </div>
