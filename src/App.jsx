@@ -52,9 +52,6 @@ function App() {
         const detectBlow = () => {
           analyser.getByteFrequencyData(dataArray);
 
-          // Выполните здесь логику для определения дуновения на основе dataArray
-
-          // Пример: проверка среднего значения частоты
           const average =
             dataArray.reduce((acc, val) => acc + val, 0) / bufferLength;
 
