@@ -1,6 +1,6 @@
 # Birdhday Cake
 
-This is an interactiev virtual candle that resposnds to microphone blowing, featiring an animation of a gradual disaperance upon blow activaltion.
+This interactive virtual candle responds to microphone blowing, featuring an animation of a gradual disappearance upon blow activation.
 
 ## Table of contents
 
@@ -19,10 +19,9 @@ This is an interactiev virtual candle that resposnds to microphone blowing, feat
 
 ### The challenge
 
-Users should be able to:
-
+Users should be able to: 
 - interact with candles on the screen
-- privary action involves blowing into the microphone to simulate blowing out candles
+- private action involves blowing into the microphone to simulate blowing out candles
 
 ### Screenshot
 
