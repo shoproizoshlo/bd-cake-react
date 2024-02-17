@@ -13,7 +13,7 @@ This interactive virtual candle responds to microphone blowing, featuring an ani
   - [What I learned](#what-i-learned)
   - [Continued development](#continued-development)
   - [Useful resources](#useful-resources)
-- [Author](#author)
+
 
 ## Overview
 
@@ -149,7 +149,3 @@ Fixing problems with blow detection on Android.
 ### Useful resources
 
 - [CSS portal](https://www.cssportal.com/css-to-scss/) - This helped me to fix problems with SCSS styling.
-
-## Author
-
-- Website - [Sue Brechko](https://sue-brechko-front-end-dev.netlify.app/)
